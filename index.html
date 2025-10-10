@@ -24,6 +24,28 @@
             </div>
         </div>
         </div>
+        <div class="history">
+            <h3>History</h3>
+            <ul id="history-list" class="history-list">
+                <!-- Transactions will be added here -->
+            </ul>
+        </div>
+        <div class="add-transaction">
+            <h3>Add New Transaction</h3>
+            <form id="transaction-form">
+                <div class="form-control">
+                    <label for="text">Text</label>
+                    <input type="text" id="text" placeholder="Enter text..." required>
+                </div>
+                <div class="form-control">
+                    <label for="amount">Amount <br> (negative - expense, positive - income)</label>
+                    <input type="number" id="amount" placeholder="Enter amount..." required>
+                </div>
+                <button type="submit" class="btn">Add Transaction</button>
+            </form>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
