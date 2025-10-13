@@ -1,4 +1,4 @@
-:root{
+:root {
     --background-color: #EFEFEF;
     --primary-color: #F15946;
     --secondary-color: #F9C22E;
@@ -7,75 +7,90 @@
     --text-color: #0000;
     --text-color2: #fff;
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body{
+
+body {
     background-color: var(--background-color);
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
-.container{
-    max-width: 700px;
+
+.container {
+    width: 100%;
+    max-width: 1200px;
     margin: 30px auto;
     padding: 20px;
     background-color: var(--text-color2);
     border-radius: 1rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-h1{
+
+h1 {
     text-align: center;
     margin-bottom: 2rem;
-    text-shadow: 7px 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 7px 2px 4px rgba(0, 0, 0, 0.1);
 }
-h2{
+
+h2 {
     margin-bottom: 1rem;
     font-size: 1.2rem;
     font-weight: 500;
 }
-.balance{
+
+.balance {
     background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--third-color));
     margin-bottom: 20px;
     text-align: center;
-    padding: 2rem .3rem 0 .3rem ;
+    padding: 2rem .3rem 0 .3rem;
     border-radius: 1rem;
 }
-#balance{
-    font-size:3rem;
+
+#balance {
+    font-size: 3rem;
     margin-top: 10px;
 }
-.income-expense{
+
+.income-expense {
     display: flex;
     justify-content: space-around;
     margin-bottom: 20px;
     text-align: center;
     padding: 1rem;
 }
-.income-expense h3{
+
+.income-expense h3 {
     font-size: 1rem;
     font-weight: 500;
 }
-.income-expense > div{
+
+.income-expense>div {
     flex: 1;
     border: 1px solid #ccc;
     padding: 1.2rem;
-    border-radius: 5px;
+    border-radius: 1rem;
     margin: 0 7px;
     background: linear-gradient(to right, #ffff, #ccc);
 }
-.income-expense > div:first-child{
+
+.income-expense>div:first-child {
     color: var(--fourth-color);
 }
-.income-expense > div:last-child{
+
+.income-expense>div:last-child {
     color: var(--primary-color);
 }
-.money{
+
+.money {
     font-size: 1.9rem;
     letter-spacing: 1px;
     font-weight: 700;
 }
+
