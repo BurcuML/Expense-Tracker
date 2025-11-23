@@ -7,6 +7,21 @@
     --text-color: #0000;
     --text-color2: #fff;
 }
+        /* Ana Renk Animasyonu: Dört rengin yavaşça kaydırılması */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 25%; } /* Başlangıç: Sol taraftan başla */
+            50% { background-position: 100% 50%; } /* Orta: Sağ tarafa kaydır */
+            100% { background-position: 0% 50%; } /* Bitiş: Tekrar sola dön */
+        }
+
+        .animated-background {
+            /* 4 farklı renkten oluşan büyük bir doğrusal gradyan oluşturur */
+            background: linear-gradient(270deg, #01a424, var(--fourth-color), var(--third-color) , var(--secondary-color), var(--primary-color), #c90909);
+            /* Gradyanı normalden 4 kat daha büyük yaparak kaydırma etkisine olanak tanır */
+            background-size: 500% 400%; 
+            /* Animasyonu uygula: gradient-shift keyframes'i, 15s sürede, yumuşak geçişle, sonsuz döngüde çalışsın */
+            animation: gradient-shift 15s ease infinite; 
+        }
 
 * {
     margin: 0;
@@ -46,7 +61,7 @@ h2 {
 }
 
 .balance {
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color), var(--third-color));
+   
     margin-bottom: 20px;
     text-align: center;
     padding: 2rem .3rem 0 .3rem;
@@ -104,16 +119,33 @@ h2 {
     margin-bottom: .7rem;
 }
 
-#history-list {
-    list-style-type: none;
-    max-height: 500px;
-    overflow-y: auto;
-    padding-right: 10px;
-    flex-grow: 1;
+.history{
+    flex: 1;
+    margin-right: 20px;
 }
+#history-list li{
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    overflow: auto;
+    padding-right: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    background: #ffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 
+    animation: slideIn 0.5s ease;
+}
+.history-list{
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
 .history-list::-webkit-scrollbar {
     width: 8px;
+    overflow: auto;
 }
 
 /*thumb is the draggable part of the scrollbar*/
@@ -132,21 +164,7 @@ h2 {
     background-color: #a0aec0;
 }
 
-.history {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
-    border-radius: 1rem;
-    background: #ffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-right: 5px solid;
-    animation: slideIn 0.5s ease;
-}
-
-.history:hover {
+.history-list li:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transform: translateX(5px);
 }
@@ -163,12 +181,12 @@ h2 {
     }
 }
 
-.history.income {
-    border-right-color: var(--fourth-color);
+.income {
+    border-right: 5px var(--fourth-color) solid;
 }
 
-.history.expense {
-    border-right-color: var(--primary-color);
+.expense {
+    border-right: 5px var(--primary-color) solid;
 }
 
 .history .delete-btn {
