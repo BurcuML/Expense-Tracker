@@ -44,8 +44,32 @@ function createTransactionElement(transaction) {
     li.classList.add(transaction.amount < 0 ? 'expense' : 'income');
     li.innerHTML = `
         <span>${transaction.description} </span>
-        <span>${transaction.amount < 0 ? '-' : '+'}$${Math.abs(transaction.amount).toFixed(2)}
+        <span>${formatCurrency(transaction.amount)} $
         <button class="delete-btn" onclick="deleteTransaction(${transaction.id})">x</button></span>
     `;
-  
+    return li;
 }
+
+function updateSummary() {
+    const balance = transactions.reduce((acc, transaction) => acc + transaction.amount, 0);
+    const incomes = transactions.filter(transaction => transaction.amount > 0).reduce((acc, transaction) => acc + transaction.amount, 0);
+    const expenses = transactions.filter(transaction => transaction.amount < 0).reduce((acc, transaction) => acc + transaction.amount, 0);
+    balanceElement.innerText = formatCurrency(balance);
+    incomeElement.innerText = formatCurrency(incomes);
+    expenseElement.innerText = formatCurrency(Math.abs(expenses));
+}
+
+function formatCurrency(number) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(number);
+}
+
+function deleteTransaction(id) {
+    transactions = transactions.filter(transaction => transaction.id !== id);
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+    updateTransactionList();
+    updateSummary();
+}
+
+updateSummary();
+updateTransactionList();
+
