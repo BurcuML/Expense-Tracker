@@ -23,8 +23,29 @@ function addTransaction(e) {
 
     localStorage.setItem('transactions', JSON.stringify(transactions));
     updateTransactionList();
-    updateBalance();
-    descriptionInput.value = '';
-    amountInput.value = '';
+    updateSummary();
     
+    transactionFormEl.reset();
+}
+
+function updateTransactionList() {
+    transactionList.innerHTML = '';
+
+    const sortedTransactions = [...transactions].reverse();
+
+    sortedTransactions.forEach(transaction => {
+        const transactionEl = createTransactionElement(transaction);
+        transactionList.appendChild(transactionEl);
+    });
+}
+
+function createTransactionElement(transaction) {
+    const li = document.createElement('li');
+    li.classList.add(transaction.amount < 0 ? 'expense' : 'income');
+    li.innerHTML = `
+        <span>${transaction.description} </span>
+        <span>${transaction.amount < 0 ? '-' : '+'}$${Math.abs(transaction.amount).toFixed(2)}
+        <button class="delete-btn" onclick="deleteTransaction(${transaction.id})">x</button></span>
+    `;
+  
 }
